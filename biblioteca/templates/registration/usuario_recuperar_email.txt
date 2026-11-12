@@ -1,0 +1,10 @@
+{% autoescape off %}Olá!
+
+Você pediu para recuperar seu nome de usuário na Biblioteca.
+{% if usernames|length > 1 %}Contas encontradas para este e-mail:{% for u in usernames %}
+ - {{ u }}{% endfor %}{% else %}Seu nome de usuário é: {{ usernames.0 }}{% endif %}
+
+Acesse: {{ login_url }}
+
+Se você não fez esse pedido, ignore este e-mail.
+{% endautoescape %}

@@ -1,0 +1,14 @@
+runtime: python312
+
+entrypoint: gunicorn -b :$PORT -w 2 --threads 4 biblioteca_project.wsgi:application
+
+# Variáveis de ambiente ficam em env_variables.yaml (NÃO versionado).
+# Copie env_variables.example.yaml e preencha.
+includes:
+  - env_variables.yaml
+
+handlers:
+  - url: /.*
+    secure: always
+    redirect_http_response_code: 301
+    script: auto

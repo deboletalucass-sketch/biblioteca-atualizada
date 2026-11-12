@@ -1,0 +1,37 @@
+{% extends "biblioteca/base.html" %}
+{% load paginacao %}
+{% block title %}Minhas Reservas{% endblock %}
+{% block content %}
+    <h1>Minhas Reservas</h1>
+    <a href="{% url 'biblioteca:reserva_create' %}">+ Nova reserva</a>
+
+    {% include "biblioteca/_filtro.html" %}
+
+    <table class="{% if reservas %}js-datatable{% endif %}">
+        <thead>
+            <tr>
+                <th>Livro</th>
+                <th>Data da reserva</th>
+                <th>Status</th>
+                <th class="no-sort">Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for reserva in reservas %}
+            <tr>
+                <td><a href="{% url 'biblioteca:reserva_detail' reserva.pk %}">{{ reserva.livro.titulo }}</a></td>
+                <td data-order="{{ reserva.data_reserva|date:'Y-m-d' }}">{{ reserva.data_reserva }}</td>
+                <td>{{ reserva.get_status_display }}</td>
+                <td>
+                    <a href="{% url 'biblioteca:reserva_update' reserva.pk %}">Editar</a>
+                    <a class="js-excluir" data-nome="reserva de {{ reserva.livro.titulo }}" href="{% url 'biblioteca:reserva_delete' reserva.pk %}">Excluir</a>
+                </td>
+            </tr>
+            {% empty %}
+            <tr><td colspan="4">Nenhuma reserva encontrada.</td></tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    {% paginacao %}
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends "biblioteca/base.html" %}
+{% block title %}Entrar{% endblock %}
+{% block content %}
+    <h1>Entrar</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="hidden" name="next" value="{{ next }}">
+        <button type="submit">Entrar</button>
+    </form>
+
+    <p class="links-login">
+        <a href="{% url 'biblioteca:password_reset' %}">Esqueci minha senha</a>
+        &middot;
+        <a href="{% url 'biblioteca:usuario_recuperar' %}">Esqueci meu usuário</a>
+    </p>
+{% endblock %}

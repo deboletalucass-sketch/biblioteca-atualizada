@@ -1,0 +1,15 @@
+{# Formulário de filtros do django-filter. Espera a variável "filter". #}
+<form method="get" class="filtro">
+    <div class="filtro-campos">
+        {% for field in filter.form %}
+            <div class="filtro-campo">
+                {{ field.label_tag }}
+                {{ field }}
+            </div>
+        {% endfor %}
+    </div>
+    <div class="filtro-acoes">
+        <button type="submit">Filtrar</button>
+        <a href="{{ request.path }}">Limpar filtros</a>
+    </div>
+</form>

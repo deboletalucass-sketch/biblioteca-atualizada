@@ -1,0 +1,14 @@
+{% extends "biblioteca/base.html" %}
+{% block title %}Detalhe do Empréstimo{% endblock %}
+{% block content %}
+    <h1>Empréstimo: {{ emprestimo.livro.titulo }}</h1>
+    <p>Usuário: {{ emprestimo.usuario }}</p>
+    <p>Data do empréstimo: {{ emprestimo.data_emprestimo }}</p>
+    <p>Devolução prevista: {{ emprestimo.data_devolucao_prevista }}</p>
+    <p>Devolução real: {{ emprestimo.data_devolucao_real|default:"—" }}</p>
+    <p>Status: {{ emprestimo.get_status_display }}</p>
+
+    <a href="{% url 'biblioteca:emprestimo_update' emprestimo.pk %}">Editar</a>
+    <a class="js-excluir" data-nome="empréstimo de {{ emprestimo.livro.titulo }}" href="{% url 'biblioteca:emprestimo_delete' emprestimo.pk %}">Excluir</a>
+    <a href="{% url 'biblioteca:emprestimo_list' %}">Voltar</a>
+{% endblock %}

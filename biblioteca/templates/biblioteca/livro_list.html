@@ -1,0 +1,45 @@
+{% extends "biblioteca/base.html" %}
+{% load paginacao %}
+{% block title %}Catálogo de Livros{% endblock %}
+{% block content %}
+    <h1>Catálogo de Livros</h1>
+    <a href="{% url 'biblioteca:livro_create' %}">+ Novo livro</a>
+
+    {% include "biblioteca/_filtro.html" %}
+
+    <table class="{% if livros %}js-datatable{% endif %}">
+        <thead>
+            <tr>
+                <th class="no-sort"></th>
+                <th>Título</th>
+                <th>Autor</th>
+                <th>Disponíveis</th>
+                <th class="no-sort">Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for livro in livros %}
+            <tr>
+                <td>
+                    {% if livro.capa %}
+                        <img class="capa-thumb" src="{{ livro.capa.url }}" alt="Capa de {{ livro.titulo }}">
+                    {% else %}
+                        <span class="capa-placeholder">sem capa</span>
+                    {% endif %}
+                </td>
+                <td><a href="{% url 'biblioteca:livro_detail' livro.pk %}">{{ livro.titulo }}</a></td>
+                <td>{{ livro.autor }}</td>
+                <td>{{ livro.quantidade_disponivel }} / {{ livro.quantidade_total }}</td>
+                <td>
+                    <a href="{% url 'biblioteca:livro_update' livro.pk %}">Editar</a>
+                    <a class="js-excluir" data-nome="{{ livro.titulo }}" href="{% url 'biblioteca:livro_delete' livro.pk %}">Excluir</a>
+                </td>
+            </tr>
+            {% empty %}
+            <tr><td colspan="5">Nenhum livro encontrado.</td></tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    {% paginacao %}
+{% endblock %}

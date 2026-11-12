@@ -1,0 +1,12 @@
+{% extends "biblioteca/base.html" %}
+{% block title %}Detalhe da Reserva{% endblock %}
+{% block content %}
+    <h1>Reserva: {{ reserva.livro.titulo }}</h1>
+    <p>Usuário: {{ reserva.usuario }}</p>
+    <p>Data da reserva: {{ reserva.data_reserva }}</p>
+    <p>Status: {{ reserva.get_status_display }}</p>
+
+    <a href="{% url 'biblioteca:reserva_update' reserva.pk %}">Editar</a>
+    <a class="js-excluir" data-nome="reserva de {{ reserva.livro.titulo }}" href="{% url 'biblioteca:reserva_delete' reserva.pk %}">Excluir</a>
+    <a href="{% url 'biblioteca:reserva_list' %}">Voltar</a>
+{% endblock %}

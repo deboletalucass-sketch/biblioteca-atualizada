@@ -1,0 +1,30 @@
+{% extends "biblioteca/base.html" %}
+{% block title %}{{ livro.titulo }}{% endblock %}
+{% block content %}
+    <h1>{{ livro.titulo }}</h1>
+
+    <div class="livro-detail">
+        {% if livro.capa %}
+            <img class="capa-grande" src="{{ livro.capa.url }}" alt="Capa de {{ livro.titulo }}">
+        {% else %}
+            <div class="capa-grande-placeholder">Sem capa cadastrada</div>
+        {% endif %}
+
+        <div class="info">
+            <p><strong>Autor:</strong> {{ livro.autor }}</p>
+            <p><strong>ISBN:</strong> {{ livro.isbn }}</p>
+            <p><strong>Categoria:</strong> {{ livro.categoria }}</p>
+            <p><strong>Editora:</strong> {{ livro.editora }}</p>
+            <p><strong>Ano:</strong> {{ livro.ano_publicacao }}</p>
+            <p><strong>Disponíveis:</strong> {{ livro.quantidade_disponivel }} / {{ livro.quantidade_total }}</p>
+
+            <div class="acoes">
+                {% if request.user.is_authenticated %}
+                    <a class="btn" href="{% url 'biblioteca:emprestimo_create' %}">Solicitar empréstimo</a>
+                    <a class="btn" href="{% url 'biblioteca:reserva_create' %}">Reservar</a>
+                {% endif %}
+                <a class="btn" href="{% url 'biblioteca:livro_list' %}">Voltar ao catálogo</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}

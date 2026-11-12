@@ -1,0 +1,10 @@
+{% extends "biblioteca/base.html" %}
+{% block title %}Excluir Empréstimo{% endblock %}
+{% block content %}
+    <h1>Excluir empréstimo de "{{ object.livro.titulo }}"?</h1>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit">Confirmar exclusão</button>
+        <a href="{% url 'biblioteca:emprestimo_list' %}">Cancelar</a>
+    </form>
+{% endblock %}

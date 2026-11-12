@@ -1,0 +1,7 @@
+{% extends "biblioteca/base.html" %}
+{% block title %}E-mail enviado{% endblock %}
+{% block content %}
+    <h1>Verifique seu e-mail</h1>
+    <p>Se existir uma conta com o e-mail informado, enviamos o nome de usuário para ele.</p>
+    <p class="links-login"><a href="{% url 'biblioteca:login' %}">Voltar ao login</a></p>
+{% endblock %}

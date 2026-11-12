@@ -1,0 +1,10 @@
+{% extends "biblioteca/base.html" %}
+{% block title %}{% if object %}Editar Reserva{% else %}Nova Reserva{% endif %}{% endblock %}
+{% block content %}
+    <h1>{% if object %}Editar Reserva{% else %}Nova Reserva{% endif %}</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Salvar</button>
+    </form>
+{% endblock %}

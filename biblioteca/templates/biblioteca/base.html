@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Biblioteca{% endblock %}</title>
+
+    {# Bootstrap (necessário para o Bootbox), DataTables e Select2 #}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.8/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css">
+    <link rel="stylesheet" href="{% static 'biblioteca/css/style.css' %}">
+</head>
+<body>
+    <nav>
+        <a href="{% url 'biblioteca:livro_list' %}">Catálogo</a>
+
+        {% if request.user.is_authenticated %}
+            <a href="{% url 'biblioteca:emprestimo_list' %}">Meus Empréstimos</a>
+            <a href="{% url 'biblioteca:reserva_list' %}">Minhas Reservas</a>
+            <a href="{% url 'biblioteca:password_change' %}">Alterar senha</a>
+            <span>Olá, {{ request.user.get_username }}</span>
+            <form action="{% url 'biblioteca:logout' %}" method="post" style="display:inline;">
+                {% csrf_token %}
+                <button type="submit">Sair</button>
+            </form>
+        {% else %}
+            <a href="{% url 'biblioteca:login' %}">Entrar</a>
+        {% endif %}
+    </nav>
+
+    <main>
+        {# Framework de mensagens do Django (Create/Update/Delete) #}
+        {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                    <li class="{{ message.tags }}">{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+
+        {% block content %}{% endblock %}
+    </main>
+
+    {# Formulário oculto usado pelo Bootbox para excluir via POST (com CSRF) #}
+    <form id="form-excluir" method="post" style="display:none;">{% csrf_token %}</form>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/6.0.0/bootbox.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.8/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/i18n/pt-BR.min.js"></script>
+    <script src="{% static 'biblioteca/js/app.js' %}"></script>
+    {% block scripts %}{% endblock %}
+</body>
+</html>

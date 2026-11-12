@@ -1,0 +1,23 @@
+env_variables:
+  SECRET_KEY: "gere-uma-chave-longa-e-aleatoria"
+  DEBUG: "False"
+  ALLOWED_HOSTS: ".appspot.com"
+  CSRF_TRUSTED_ORIGINS: "https://*.appspot.com"
+
+  # Banco (Neon)
+  PGHOST: "xxxx.neon.tech"
+  PGDATABASE: "neondb"
+  PGUSER: "usuario"
+  PGPASSWORD: "senha"
+  PGPORT: "5432"
+
+  # Upload de capas
+  GS_BUCKET_NAME: "nome-do-bucket"
+
+  # E-mail (recuperação de senha/usuário)
+  EMAIL_BACKEND: "django.core.mail.backends.smtp.EmailBackend"
+  EMAIL_HOST: "smtp.gmail.com"
+  EMAIL_PORT: "587"
+  EMAIL_HOST_USER: "seu-email@gmail.com"
+  EMAIL_HOST_PASSWORD: "senha-de-app"
+  DEFAULT_FROM_EMAIL: "seu-email@gmail.com"

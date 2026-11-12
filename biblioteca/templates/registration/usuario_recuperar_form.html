@@ -1,0 +1,12 @@
+{% extends "biblioteca/base.html" %}
+{% block title %}Recuperar usuário{% endblock %}
+{% block content %}
+    <h1>Recuperar usuário</h1>
+    <p>Informe o e-mail cadastrado e enviaremos o seu nome de usuário.</p>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Enviar</button>
+    </form>
+    <p class="links-login"><a href="{% url 'biblioteca:login' %}">Voltar ao login</a></p>
+{% endblock %}

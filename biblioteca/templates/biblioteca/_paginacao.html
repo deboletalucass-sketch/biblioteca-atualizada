@@ -1,0 +1,24 @@
+{% load paginacao %}
+{% if page_obj.has_other_pages %}
+<div class="paginacao">
+    {% if page_obj.has_previous %}
+        <a href="?{% url_replace page=1 %}">&laquo; Primeira</a>
+        <a href="?{% url_replace page=page_obj.previous_page_number %}">Anterior</a>
+    {% endif %}
+
+    {% for num in paginas %}
+        {% if num == page_obj.number %}
+            <strong class="pagina-atual">{{ num }}</strong>
+        {% elif num == ellipsis %}
+            <span>{{ ellipsis }}</span>
+        {% else %}
+            <a href="?{% url_replace page=num %}">{{ num }}</a>
+        {% endif %}
+    {% endfor %}
+
+    {% if page_obj.has_next %}
+        <a href="?{% url_replace page=page_obj.next_page_number %}">Próxima</a>
+        <a href="?{% url_replace page=page_obj.paginator.num_pages %}">Última &raquo;</a>
+    {% endif %}
+</div>
+{% endif %}

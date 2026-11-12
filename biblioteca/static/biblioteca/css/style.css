@@ -1,0 +1,362 @@
+:root {
+    --preto: #121212;
+    --preto-suave: #1e1b24;
+    --roxo: #6c2bd9;
+    --roxo-claro: #9b5de5;
+    --roxo-escuro: #4b1d99;
+    --branco: #ffffff;
+    --cinza-claro: #f4f2f9;
+    --cinza-borda: #e4dff2;
+    --texto: #201c2b;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: "Segoe UI", Roboto, Arial, sans-serif;
+    background: var(--cinza-claro);
+    color: var(--texto);
+}
+
+/* ---------- Navbar ---------- */
+nav {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    background: linear-gradient(90deg, var(--preto), var(--roxo-escuro));
+    padding: 0.9rem 1.5rem;
+    flex-wrap: wrap;
+}
+
+nav a {
+    color: var(--branco);
+    text-decoration: none;
+    font-weight: 500;
+    opacity: 0.9;
+    transition: opacity 0.15s ease;
+}
+
+nav a:hover {
+    opacity: 1;
+    text-decoration: underline;
+    text-decoration-color: var(--roxo-claro);
+}
+
+nav span {
+    color: var(--roxo-claro);
+    margin-left: auto;
+}
+
+nav form {
+    margin: 0;
+}
+
+nav button {
+    background: var(--roxo);
+    color: var(--branco);
+    border: none;
+    padding: 0.4rem 0.9rem;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 500;
+}
+
+nav button:hover {
+    background: var(--roxo-claro);
+}
+
+/* ---------- Layout principal ---------- */
+main {
+    max-width: 1000px;
+    margin: 2rem auto;
+    padding: 0 1.5rem;
+}
+
+h1 {
+    color: var(--preto);
+    border-bottom: 3px solid var(--roxo);
+    padding-bottom: 0.5rem;
+    margin-bottom: 1.5rem;
+}
+
+/* ---------- Mensagens ---------- */
+main > ul {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 1.5rem;
+}
+
+main > ul li {
+    background: var(--roxo-claro);
+    color: var(--branco);
+    padding: 0.7rem 1rem;
+    border-radius: 6px;
+    margin-bottom: 0.5rem;
+}
+
+/* ---------- Links de ação ---------- */
+a.btn, main > a:not(.card-link) {
+    display: inline-block;
+    background: var(--roxo);
+    color: var(--branco);
+    text-decoration: none;
+    padding: 0.55rem 1.1rem;
+    border-radius: 6px;
+    margin-bottom: 1.25rem;
+    font-weight: 500;
+    transition: background 0.15s ease;
+}
+
+main > a:not(.card-link):hover {
+    background: var(--roxo-escuro);
+}
+
+/* ---------- Tabelas ---------- */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--branco);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 10px rgba(18, 18, 18, 0.08);
+}
+
+thead {
+    background: var(--preto);
+}
+
+thead th {
+    color: var(--branco);
+    text-align: left;
+    padding: 0.85rem 1rem;
+}
+
+tbody td {
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid var(--cinza-borda);
+    vertical-align: middle;
+}
+
+tbody tr:hover {
+    background: var(--cinza-claro);
+}
+
+tbody a {
+    color: var(--roxo-escuro);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+tbody a:hover {
+    text-decoration: underline;
+}
+
+/* ---------- Capa do livro na listagem ---------- */
+.capa-thumb {
+    width: 45px;
+    height: 65px;
+    object-fit: cover;
+    border-radius: 4px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.25);
+    vertical-align: middle;
+    margin-right: 0.6rem;
+}
+
+.capa-placeholder {
+    width: 45px;
+    height: 65px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--cinza-borda);
+    color: var(--roxo-escuro);
+    font-size: 0.65rem;
+    border-radius: 4px;
+    vertical-align: middle;
+    margin-right: 0.6rem;
+    text-align: center;
+}
+
+/* ---------- Página de detalhe do livro ---------- */
+.livro-detail {
+    display: flex;
+    gap: 2rem;
+    background: var(--branco);
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(18, 18, 18, 0.08);
+    flex-wrap: wrap;
+}
+
+.livro-detail .capa-grande {
+    width: 200px;
+    height: 290px;
+    object-fit: cover;
+    border-radius: 6px;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.25);
+    flex-shrink: 0;
+}
+
+.livro-detail .capa-grande-placeholder {
+    width: 200px;
+    height: 290px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--cinza-claro);
+    border: 2px dashed var(--roxo-claro);
+    color: var(--roxo-escuro);
+    border-radius: 6px;
+    text-align: center;
+    padding: 1rem;
+}
+
+.livro-detail .info p {
+    margin: 0.4rem 0;
+}
+
+.livro-detail .info strong {
+    color: var(--roxo-escuro);
+}
+
+.livro-detail .acoes {
+    margin-top: 1.25rem;
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+}
+
+/* ---------- Formulários ---------- */
+form p {
+    margin-bottom: 1rem;
+}
+
+form label {
+    display: block;
+    margin-bottom: 0.3rem;
+    font-weight: 500;
+    color: var(--preto);
+}
+
+form input[type="text"],
+form input[type="number"],
+form input[type="date"],
+form input[type="password"],
+form input[type="email"],
+form input[type="file"],
+form select,
+form textarea {
+    width: 100%;
+    max-width: 420px;
+    padding: 0.55rem 0.7rem;
+    border: 1px solid var(--cinza-borda);
+    border-radius: 6px;
+    background: var(--branco);
+    font-size: 0.95rem;
+}
+
+form input:focus,
+form select:focus,
+form textarea:focus {
+    outline: none;
+    border-color: var(--roxo);
+    box-shadow: 0 0 0 3px rgba(108, 43, 217, 0.15);
+}
+
+form button[type="submit"] {
+    background: var(--roxo);
+    color: var(--branco);
+    border: none;
+    padding: 0.6rem 1.4rem;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    font-size: 0.95rem;
+}
+
+form button[type="submit"]:hover {
+    background: var(--roxo-escuro);
+}
+
+/* ---------- Paginação ---------- */
+main > div {
+    margin-top: 1.5rem;
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    color: var(--preto);
+}
+
+main > div a {
+    color: var(--roxo-escuro);
+    font-weight: 500;
+    text-decoration: none;
+}
+
+main > div a:hover {
+    text-decoration: underline;
+}
+
+/* ---------- Mensagens por nível (django.contrib.messages) ---------- */
+main > ul.messages li.success { background: #1f8a4c; }
+main > ul.messages li.error   { background: #c0392b; }
+main > ul.messages li.warning { background: #b9770e; }
+main > ul.messages li.info    { background: var(--roxo-claro); }
+
+/* ---------- Filtros (django-filter) ---------- */
+.filtro {
+    background: var(--branco);
+    border: 1px solid var(--cinza-borda);
+    border-radius: 8px;
+    padding: 1rem 1.25rem;
+    margin-bottom: 1.5rem;
+}
+
+.filtro-campos {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.filtro-campo {
+    flex: 1 1 200px;
+}
+
+.filtro-campo input,
+.filtro-campo select {
+    max-width: 100%;
+}
+
+.filtro-campo input[type="date"] {
+    width: 48%;
+}
+
+.filtro-acoes {
+    margin-top: 1rem;
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.filtro-acoes a {
+    color: var(--roxo-escuro);
+}
+
+/* ---------- Paginação ---------- */
+.paginacao .pagina-atual {
+    background: var(--roxo);
+    color: var(--branco);
+    padding: 0.2rem 0.6rem;
+    border-radius: 4px;
+}
+
+.links-login a {
+    color: var(--roxo-escuro);
+}
+
+/* ---------- Ajustes de convivência com DataTables ---------- */
+table.dataTable thead th { color: var(--branco); }
